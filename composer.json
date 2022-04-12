@@ -1,0 +1,7 @@
+{
+    "require": {
+        "php": ">=8.1",
+        "fabpot/goutte": "^4.0",
+        "masterminds/html5": "^2.7"
+    }
+}
