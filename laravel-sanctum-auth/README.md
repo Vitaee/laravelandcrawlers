@@ -1,3 +1,58 @@
+# Sanctum Authenticate Example Project
+
+- php version: ```8.1.4```.
+- run ```composer install``` to install dependicies.
+- run ```php artisan serve``` to start development server.
+- then simply open ```htpp://127.0.0.1:8000/api/documentation```
+
+# Swagger UI Integration
+- first of all install ```composer require "darkaonline/l5-swagger"``` this package.
+- Open your ```AppServiceProvider``` (located in ```app/Providers```) and add this line in ```register``` function.
+
+```
+    $this->app->register(\L5Swagger\L5SwaggerServiceProvider::class);
+```
+- or open your ```config/app.php``` and add this line in ```providers``` section
+
+```
+L5Swagger\L5SwaggerServiceProvider::class,
+```
+- Finally, you can access your documentation at ```/api/documentation``` endpoint.
+- Before this step you should add annotations to you functions and ```BaseController```.
+- Open ```app/Http/Controllers/Controller.php``` then check example annotation;
+```
+/**
+ * @OA\Info(
+ *      version="1.0.0",
+ *      x={
+ *          "logo": {
+ *              "url": "https://via.placeholder.com/190x90.png?text=L5-Swagger"
+ *          }
+ *      },
+ *      title="L5 OpenApi",
+ *      description="L5 Swagger OpenApi description",
+ *      @OA\Contact(
+ *          email="canilguu@gmail.com"
+ *      ),
+ *     @OA\License(
+ *         name="Apache 2.0",
+ *         url="https://www.apache.org/licenses/LICENSE-2.0.html"
+ *     )
+ * )
+ */
+class Controller extends BaseController
+{
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+}
+
+```
+- For your functions ( endpoints ) see example in ```app/Http/Controllers/Api/AuthController/login```.
+- The real final step is generating swagger. Simply run below command then check ```api/documentation``` endpoint.
+
+``` php artisan l5-swagger:generate ```
+
+For more detais about l5-swagger check this [link](https://github.com/DarkaOnLine/L5-Swagger/wiki/Installation-&-Configuration#swaggeropenapi-annotations-and-generating-documentation).
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
@@ -27,25 +82,6 @@ Laravel has the most extensive and thorough [documentation](https://laravel.com/
 
 If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
 
 ## Contributing
 

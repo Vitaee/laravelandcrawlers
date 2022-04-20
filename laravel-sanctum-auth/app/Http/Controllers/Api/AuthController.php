@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @license Apache 2.0
+ */
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
@@ -13,9 +15,40 @@ use App\Models\User;
 
 class AuthController extends BaseController
 {
-    /**
-     * handle with login request.
-     */
+/**
+    * handle with login request.
+    * 
+    * @OA\Post(
+    *  path="/api/v1/user/login",
+    *  tags={"auth"},
+    *  operationId="user login",
+    *  @OA\RequestBody(
+    *  @OA\MediaType(
+    *    mediaType="application/json",
+    *    @OA\Schema(
+    *       @OA\Property(
+    *           property="email",
+    *           description="User email.",
+    *           type="string",
+    *       ),
+    *       @OA\Property(
+    *           property="password",
+    *           description="User password",
+    *           type="string",
+    *      
+    *       ),
+    *    ),
+    *  ),
+    * ),
+    *  @OA\Response(
+    *      response=200,
+    *      description="{ 'success': true,'data': { 'token': '2|fAckExZYZyCKJdUubuLWdfjEDMSFSCmvcSp4k4aU', 'name': 'Can' }, 'message': 'User signed in.' }"
+    *  ),
+    * 
+    * 
+    * 
+    * )
+*/
     public function signin(UserLoginRequest $request)
     {
         $inputArr = $request->all();
