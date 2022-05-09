@@ -16,19 +16,37 @@ class LoginTest extends TestCase
      */
     public function test_example()
     {
-        $user = factory(User::class)->create([
+        $user = User::create([
             'name' => "test",
-            'email' => "can1@gmail.com",
+            'email' => "can5@gmail.com",
             'password' => bcrypt($password = 'make12'),
         ]);
-        
-        $response = $this->post('api/v1/login', [
+
+        $response = $this->actingAs($user)->post('api/v1/user/login', [
             'email' => $user->email,
-            'password' => $password
+            'password' => "make12"//$password
         ]);
         
+    
         
+
+        //$response = $this->withHeaders(['Authorization' => "Bearer $token"])
+        //    ->json('GET', '/api/v1/user', []);
+
+        $response->assertStatus(200);
+
+        /*$response = $this->post('api/v1/user/login', [
+            'email' => "can1@gmail.com",//$user->email,
+            'password' => "make12"//$password
+        ]);
+
+
+        $response->assertStatus(200);
+        
+        $response1 = $this->get('api/v1/user',[
+            'Bearer '
+        ]);*/
         // cookie assertion goes here
-        $this->assertAuthenticatedAs($user);
+        //$this->assertAuthenticatedAs($user);
     }
 }
