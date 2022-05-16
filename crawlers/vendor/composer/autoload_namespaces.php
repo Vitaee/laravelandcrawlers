@@ -6,4 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Phpml' => array($vendorDir . '/php-ai/php-ml/src'),
+    'KMeans' => array($vendorDir . '/bdelespierre/php-kmeans/src'),
 );

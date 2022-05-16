@@ -136,6 +136,23 @@ class ComposerStaticInit09a7774d1d94383faff463bcbc492fa3
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'Phpml' => 
+            array (
+                0 => __DIR__ . '/..' . '/php-ai/php-ml/src',
+            ),
+        ),
+        'K' => 
+        array (
+            'KMeans' => 
+            array (
+                0 => __DIR__ . '/..' . '/bdelespierre/php-kmeans/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
@@ -151,6 +168,7 @@ class ComposerStaticInit09a7774d1d94383faff463bcbc492fa3
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit09a7774d1d94383faff463bcbc492fa3::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit09a7774d1d94383faff463bcbc492fa3::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit09a7774d1d94383faff463bcbc492fa3::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit09a7774d1d94383faff463bcbc492fa3::$classMap;
 
         }, null, ClassLoader::class);

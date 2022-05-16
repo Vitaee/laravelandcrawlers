@@ -3,6 +3,8 @@
         "php": ">=8.1",
         "fabpot/goutte": "^4.0",
         "masterminds/html5": "^2.7",
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+        "php-ai/php-ml": "^0.4.1",
+        "bdelespierre/php-kmeans": "^2.2"
     }
 }
