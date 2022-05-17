@@ -1,0 +1,53 @@
+version: '4.1'
+
+networks:
+  
+  laravel:
+
+    services:
+      
+      nginx:
+        image: nginx:alpine
+        command: nginx -g "daemon off;"
+        container_name: nginx
+        ports:
+          - "8080:80"
+        volumes:
+          - ./src:/var/www
+          - ./nginx/conf.d/:/etc/nginx/conf.d/
+        depends_on:
+          - php
+          - db
+        network:
+          - laravel
+    
+      db:
+        image: mysql
+        container_name: mysql
+        restart: unless-stopped
+        tty: true
+        volumes:
+          - ./mysql/data:/var/lib/mysql
+        ports:
+          - "3306:3306"
+        environment:
+          MYSQL_DATABASE: blabla
+          MYSQL_USER: blabla
+          MYSQL_PASSWORD: password
+          MYSQL_ROOT_PASSWORD: password
+          SERVICE_TAGS: dev
+          SERVICE_NAME: mysql
+        networks:
+          - laravel
+
+      php:
+        build:
+          context: ./
+          dockerfile: Dockerfile
+        volumes:
+          - ./src:/var/www
+        ports:
+          - "9000:9000"
+        networks:
+          - laravel
+       
