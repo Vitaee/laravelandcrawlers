@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\BlogController;
 */
 
 Route::prefix('v1')->namespace('Api')->group( function(){
+    Route::get('/hello', fn () => response(['data' => 'Hello from Laravel!']));
 
     Route::prefix('user')->name('user.')->group( function () {
         Route::post('/login', [AuthController::class, 'signin'])->name('signin');

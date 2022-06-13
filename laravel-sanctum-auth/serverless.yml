@@ -1,0 +1,37 @@
+service: app
+
+provider:
+    name: aws
+    region: us-east-1
+    runtime: provided.al2
+
+plugins:
+    - ./vendor/bref/bref
+
+functions:
+    api:
+        handler: public/index.php
+        environment:
+          LOG_CHANNEL: stderr
+          SESSION_DRIVER: array
+          CACHE_DRIVER: array
+          DB_NAME: laraveldatabase
+          DB_CONNECTION: mysql
+          DB_HOST: laraveldatabase.coer9leba0ie.us-east-1.rds.amazonaws.com
+          DB_PORT: 3306
+          DB_DATABASE: slsdatabase
+          DB_USERNAME: root
+          DB_PASSWORD: softwilgu88*
+
+        description: ''
+        timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
+        layers:
+            - ${bref:layer.php-81-fpm}
+        events:
+            -   httpApi: '*'
+
+# Exclude files from deployment
+package:
+    patterns:
+        - '!node_modules/**'
+        - '!tests/**'
